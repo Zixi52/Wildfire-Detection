@@ -1,11 +1,9 @@
 #include <Arduino.h>
-#include <Adafruit_BME680.h>
-#include <Adafruit_SGP40.h>
-#include <AdafruitIO_Feed.h>
-#include <Adafruit_GPS.h>
-#include <Adafruit_ST7789.h>
-#include <Adafruit_GFX.h>
-#include <config.hpp>
+
+#include <coord.hpp>
+#include <gps.hpp>
+#include <io.hpp>
+#include <temp-gas.hpp>
 
 void setup() {
 
