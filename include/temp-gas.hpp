@@ -19,10 +19,10 @@ namespace TEMPGAS {
 Adafruit_SGP40 sgp(*theWire);
 Adafruit_BME680 bme;
 
-void initialize();
+void initialise();
 void measurement();
 
-void initialize() {
+void initialise() {
     Serial.begin(115200);
         while (!Serial) { delay(10); } // Wait for serial console to open!
 
