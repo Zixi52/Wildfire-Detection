@@ -3,6 +3,7 @@
 #include <gps.hpp>
 #include <io.hpp>
 #include <temp-gas.hpp>
+#include <Adafruit_GFX.h>
 
 void setup() {
   // start the serial connection
@@ -25,8 +26,8 @@ void loop() {
   if (IO::IO_connected) {
     IO::location->save(1, my_coords.latitude, my_coords.longitude,
                       my_coords.altitude);
-    IO::temp->save(2, TEMPGAS::temperature_measurement()); 
-    IO::voc_lev->save(3, TEMPGAS::voc_measurement()); 
+    IO::temp->save(TEMPGAS::temperature_measurement()); 
+    IO::voc_lev->save(TEMPGAS::voc_measurement()); 
   } else {
     //Serial prints all the stuff
     Serial.println(my_coords.latitude);

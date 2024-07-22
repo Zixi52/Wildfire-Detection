@@ -16,7 +16,7 @@ namespace TEMPGAS {
 #define BME_CS 10
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-Adafruit_SGP40 sgp(*theWire);
+Adafruit_SGP40 sgp;
 Adafruit_BME680 bme;
 
 void initialise();
@@ -28,6 +28,7 @@ void initialise() {
 
     Serial.println("SGP40 test");
 
+    sgp.begin();
     if (! sgp.begin()){
         Serial.println("Sensor not found :(");
         while (1);
@@ -45,6 +46,7 @@ void initialise() {
     bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
     bme.setGasHeater(320, 150); // 320*C for 150 ms
     // Tell BME680 to begin measurement.
+    bme.begin();
     unsigned long endTime = bme.beginReading();
     if (endTime == 0) {
         Serial.println(F("Failed to begin reading :("));
@@ -52,10 +54,10 @@ void initialise() {
     }
 }
 
-double temperature_measurement() {
-    double t = bme.readTemperature();
+float temperature_measurement() {
+    float t = bme.readTemperature();
     Serial.print("Temp *C = "); Serial.print(t); Serial.print("\t\t");
-    double h = bme.readHumidity();
+    float h = bme.readHumidity();
     Serial.print("Hum. % = "); Serial.println(h);
 
     return t;
@@ -63,8 +65,8 @@ double temperature_measurement() {
 
 int32_t voc_measurement(){
     int32_t voc_index;
-    double t = bme.readTemperature();
-    double h = bme.readHumidity();
+    float t = bme.readTemperature();
+    float h = bme.readHumidity();
     voc_index = sgp.measureVocIndex(t, h);
     Serial.print("Voc Index: ");
     Serial.println(voc_index);
