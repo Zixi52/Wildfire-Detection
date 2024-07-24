@@ -2,13 +2,13 @@
 #define IO_HPP
 
 // Fetch your key from Adafruit
-#define IO_USERNAME "YOUR USERNAME"
-#define IO_KEY "YOUR KEY"
+#define IO_USERNAME ""
+#define IO_KEY ""
 
 /******************************* WIFI **************************************/
 
-#define WIFI_SSID "YOUR SSID"
-#define WIFI_PASS "YOUR PASSWORD"
+#define WIFI_SSID ""
+#define WIFI_PASS ""
 
 #include <AdafruitIO_WiFi.h>
 
@@ -23,6 +23,11 @@ AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 AdafruitIO_Feed *location = io.feed("GPS");
 AdafruitIO_Feed *temp = io.feed("Heat");
 AdafruitIO_Feed *voc_lev = io.feed("VOC");
+AdafruitIO_Feed *alert = io.feed("alert");
+AdafruitIO_Feed *sharedTemp = io.feed("Temperature", "thuang8823");
+AdafruitIO_Feed *sharedVOC = io.feed("VOC", "thuang8823");
+AdafruitIO_Feed *avgTemp = io.feed("Average Temp");
+AdafruitIO_Feed *avgVOC = io.feed("Average VOC Level");
 
 // attempt connection
 void try_connect() {
